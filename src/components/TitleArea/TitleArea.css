@@ -1,0 +1,22 @@
+@import "../../style/ui-kit.css";
+
+.title-area{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin: 18px 0 8px;
+}
+
+
+.title-area__btn{
+  width:40px;
+  height:40px;
+  border: none;
+  background: transparent;
+  cursor:pointer;
+  transition: 0.3s;
+}
+
+.title-area__btn:hover{
+  transform: scale(1.2);
+}

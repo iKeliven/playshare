@@ -1,0 +1,71 @@
+@import "../../style/ui-kit.css";
+
+.now-playing {
+  width: min(700px, 92vw);
+  height: 80vh;
+  padding: 30px;
+  margin-right: 20px;
+}
+
+
+.now-playing__coverWrap {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.now-playing__cover {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+}
+
+.now-playing__coverPlaceholder {
+  width: 220px;
+  height: 220px;
+}
+
+.np-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.np-btn:hover{
+  transform: scale(1.07);
+}
+
+.now-playing__progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, .65);
+  font-size: 12px;
+  width: 100%;
+  max-width: 520px;
+  white-space: nowrap;
+}
+
+.now-playing__progress > span{
+  min-width: 42px;
+}
+
+.now-playing__progress > span:last-child{
+  text-align: right;
+}
+
+.np-bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .92);
+  overflow: hidden;
+}
+
+.np-bar__fill {
+  width: 30%;
+  height: 100%;
+  background: rgba(0, 122, 255, .95);
+  transition: width 120ms linear;
+}

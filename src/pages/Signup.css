@@ -1,0 +1,41 @@
+@import "../style/ui-kit.css";
+
+
+.logo {
+    width: 300px;
+    max-width: 75%;
+    margin-top: 15%;
+    margin-bottom: 5%;
+}
+
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+@media (max-width: 720px) {
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+.signup-card {
+    width: min(900px, 95vw);
+    padding: 60px 100px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: end;
+}
+
+
+@media (max-width: 720px) {
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+}

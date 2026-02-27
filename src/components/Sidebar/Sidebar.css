@@ -1,0 +1,52 @@
+@import "../../style/ui-kit.css";
+
+.ps-sidebar {
+    width: 90px;
+    height: 100vh;
+    padding: 20px;
+}
+
+
+.ps-sidebar__avatar {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+}
+
+
+.ps-sidebar__link {
+    width: 46px;
+    height: 46px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.ps-sidebar__link:hover {
+    background: rgba(217, 217, 217, .10);
+    scale: 1.2;
+}
+
+.ps-sidebar__link.is-active {
+    background: rgba(0, 122, 255, .18);
+    border-color: white;
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, .10);
+}
+
+.ps-sidebar__icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.ps-sidebar__bottom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

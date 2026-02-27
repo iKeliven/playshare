@@ -1,0 +1,32 @@
+@import "../../style/ui-kit.css";
+
+/* Home.css */
+.home {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  padding: 30px;
+}
+
+
+.home__main {
+  min-width: 0;
+}
+
+.home__aside {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  margin-right: 20px;
+  justify-content: center;
+}
+
+@media (max-width: 980px) {
+  .home {
+    grid-template-columns: 1fr;
+  }
+
+  .home__aside {
+    order: -1;
+  }
+}

@@ -1,0 +1,86 @@
+@import "../../style/ui-kit.css";
+
+.user-page{
+  min-height: 100vh;
+  align-items:flex-start;
+}
+
+.user-card{
+  width: min(820px, 96vw);
+  padding: 30px;
+  padding-left: 90px;
+}
+
+
+.user-avatarWrap{
+  width: 66px;
+  height: 66px;
+
+  overflow:hidden;
+  flex: 0 0 auto;
+}
+
+.user-avatar{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+
+.user-topText{
+  flex:1;
+  min-width:0;
+}
+
+.user-title{
+  margin:0;
+  color: rgba(255,255,255,.7);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.user-subtitle{
+  margin: 4px 0 0;
+  color:#fff;
+  font-weight: 900;
+  font-size: 22px;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+
+.user-editBtn{
+  height: 44px;
+  padding: 0 18px;
+  flex: 0 0 auto;
+}
+
+
+
+.field-label{
+  margin: 0;
+  color: rgba(255,255,255,.75);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.user-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+
+.btn-cancel:disabled,
+.ps-btn:disabled{
+  opacity: .45;
+  cursor:not-allowed;
+}
+
+.ps-input:disabled{
+  opacity: .70;
+  cursor:not-allowed;
+}

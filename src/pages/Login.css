@@ -1,0 +1,38 @@
+@import "../style/ui-kit.css";
+
+/* Card */
+.login-card {
+  width: min(520px, 92vw);
+  padding: 56px 44px 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  height: 75vh;
+}
+
+/* logo */
+.logo {
+  width: 210px;
+  max-width: 75%;
+  margin-top: 15%;
+}
+
+/* form */
+.form-login {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* responsivo */
+@media (max-width: 520px) {
+  .login-card {
+    padding: 56px 22px 40px;
+  }
+
+  .logo {
+    width: 180px;
+  }
+}
