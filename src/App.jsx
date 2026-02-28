@@ -5,7 +5,6 @@ import Login from "./pages/Login.jsx";
 import SignUp from "./pages/Signup.jsx";
 import Home from "./pages/Home/Home.jsx";
 import UserPage from "./pages/User/UserPage.jsx";
-import PlaylistPage from "./pages/Playlist/PlaylistPage.jsx";
 import MusicPage from "./pages/Music/MusicsPage.jsx";
 import FavoritesPage from "./pages/Favorites/FavoritesPage.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
@@ -48,11 +47,7 @@ export default function App() {
       />
       <Route
         path="/playlists"
-        element={
-          <ProtectedRoute>
-            <PlaylistPage />
-          </ProtectedRoute>
-        }
+        element={<Navigate to="/home" replace />}
       />
       <Route
         path="/favoritos"

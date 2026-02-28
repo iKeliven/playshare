@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>playshare</title>
+    <script>
+      // GitHub Pages SPA redirect
+      // Stores the path in sessionStorage and redirects to the app root.
+      (function () {
+        var l = window.location;
+        sessionStorage.setItem(
+          "redirect",
+          l.pathname + l.search + l.hash
+        );
+        l.replace("/playshare/");
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

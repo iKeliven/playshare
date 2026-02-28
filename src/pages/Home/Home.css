@@ -21,6 +21,80 @@
   justify-content: center;
 }
 
+.home-trackCard{
+  width: 288px;
+  height: 194px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.home-trackCard__img{
+  width: 100%;
+  height: 108px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.home-trackCard__meta{
+  width: 100%;
+  min-width: 0;
+}
+
+.home-trackCard__title,
+.home-trackCard__artist,
+.home-trackCard__extra{
+  margin: 0;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.home-trackCard__title{
+  font-weight: 900;
+  font-size: 13px;
+}
+
+.home-trackCard__artist{
+  opacity: .85;
+  font-size: 12px;
+}
+
+.home-trackCard__extra{
+  opacity: .65;
+  font-size: 11px;
+}
+
+.home-trackCard__btn{
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-trackCard__btn:disabled{
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.home-trackCard__icon{
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.home-trackCard__icon.is-control{
+  filter: brightness(0) invert(1);
+}
+
 @media (max-width: 980px) {
   .home {
     grid-template-columns: 1fr;

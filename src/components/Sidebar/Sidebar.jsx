@@ -5,7 +5,6 @@ import "./Sidebar.css";
 import home from "/home.svg";
 import userIcon from "/user.svg";
 import heart from "/heart.svg";
-import dashboard from "/dashboard.svg";
 import logout from "/logout.svg";
 import music from "/music.svg";
 
@@ -18,7 +17,6 @@ export default function Sidebar() {
     { to: "/usuario", icon: userIcon, label: "Perfil" },
     { to: "/favoritos", icon: heart, label: "Favoritos" },
     { to: "/musicas", icon: music, label: "Músicas" },
-    { to: "/playlists", icon: dashboard, label: "Playlists" },
   ];
 
   const handleLogoutClick = () => {

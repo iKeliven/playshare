@@ -121,7 +121,7 @@ export default function Music() {
       <div className="music-header flex jc-between gap-16 top-18">
         <div className="flex col gap-8">
           <p className="ps-title">Músicas</p>
-          <p className="ps-description">Pesquise no iTunes e ouça prévias 🎧</p>
+          <p className="ps-description">Pesquise no Playshare e ouça prévias 🎧</p>
         </div>
 
         <div className="ps-search b-pill flex ai-center card-glass">

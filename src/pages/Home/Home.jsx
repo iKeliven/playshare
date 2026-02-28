@@ -2,13 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HorizontalRail from "../../components/HorizontalRail/HorizontalRail";
 import GenreCard from "../../components/cards/GenreCard";
-import ArtistCard from "../../components/cards/ArtistCard";
 import PlaylistCard from "../../components/cards/PlaylistCard";
 import TitleArea from "../../components/TitleArea/TitleArea";
 import NowPlayingArea from "../../components/NowPlayingArea/NowPlayingArea";
 import HomeLayout from "./HomeLayout";
 import "./Home.css";
-import { fetchArtistsSeeds, fetchGenreSeeds, fetchPlaylistCovers, fetchTopGenres } from "../../services/homeData";
+import { fetchGenreSeeds, fetchPlaylistCovers, fetchTopGenres } from "../../services/homeData";
 import { msToMinSec } from "../../services/itunes";
 import { searchSongs } from "../../services/itunes";
 import { usePlayer } from "../../hooks";
@@ -16,118 +15,22 @@ import { getArtistImage } from "../../services/lastfm";
 
 export default function Home() {
   const railGenres = useRef(null);
-  const railArtists = useRef(null);
   const railPlaylists = useRef(null);
+  const railTracks = useRef(null);
 
   const nav = useNavigate();
   const goMusic = (term) => nav(`/musicas?q=${encodeURIComponent(term)}`);
 
-  const [artists, setArtists] = useState([]);
   const [playlists, setPlaylists] = useState([]);
   const [genres, setGenres] = useState([]);
-  const [loadingA, setLoadingA] = useState(true);
   const [loadingP, setLoadingP] = useState(true);
   const [loadingG, setLoadingG] = useState(true);
-  const [artistImages, setArtistImages] = useState({});
   const [genreImages, setGenreImages] = useState({});
+  const [tracks, setTracks] = useState([]);
+  const [loadingT, setLoadingT] = useState(true);
 
-  useEffect(() => {
-    let alive = true;
-
-    fetchArtistsSeeds({ country: "BR", perSeed: 12 })
-      .then((list) => alive && setArtists(list))
-      .finally(() => alive && setLoadingA(false));
-
-    fetchPlaylistCovers({ country: "BR" })
-      .then((list) => alive && setPlaylists(list))
-      .finally(() => alive && setLoadingP(false));
-
-    fetchTopGenres({ country: "br", limit: 100, take: 6 })
-      .then((list) => {
-        if (!alive) return;
-        if (Array.isArray(list) && list.length > 0) {
-          setGenres(list);
-        } else {
-          return fetchGenreSeeds({ country: "BR", take: 6 }).then((fallback) => {
-            if (alive) setGenres(fallback);
-          });
-        }
-      })
-      .catch(() =>
-        fetchGenreSeeds({ country: "BR", take: 6 }).then((fallback) => {
-          if (alive) setGenres(fallback);
-        })
-      )
-      .finally(() => alive && setLoadingG(false));
-
-    return () => {
-      alive = false;
-    };
-  }, []);
-
-  useEffect(() => {
-    let alive = true;
-    const list = artists ?? [];
-    if (list.length === 0) {
-      return () => {
-        alive = false;
-      };
-    }
-
-    (async () => {
-      const uniqueNames = Array.from(new Set(list.map((a) => a?.name).filter(Boolean)));
-      const images = {};
-      await Promise.allSettled(
-        uniqueNames.map(async (name) => {
-          const img = await getArtistImage(name);
-          if (img) {
-            images[name] = img;
-            return;
-          }
-
-          try {
-            const [song] = await searchSongs(name, { limit: 1, country: "BR" });
-            const fallback = song?.artwork;
-            if (fallback) images[name] = fallback;
-          } catch {
-            void 0;
-          }
-        })
-      );
-      if (alive) setArtistImages(images);
-    })();
-
-    return () => {
-      alive = false;
-    };
-  }, [artists]);
-
-  useEffect(() => {
-    let alive = true;
-    const list = genres ?? [];
-    if (list.length === 0) {
-      return () => {
-        alive = false;
-      };
-    }
-
-    (async () => {
-      const images = {};
-      await Promise.allSettled(
-        list.map(async (g) => {
-          const img = g?.sampleArtist ? await getArtistImage(g.sampleArtist) : null;
-          if (img) images[g.id] = img;
-        })
-      );
-      if (alive) setGenreImages(images);
-    })();
-
-    return () => {
-      alive = false;
-    };
-  }, [genres]);
-
-  const { track, isPlaying, current, total, pause, resume, seek, repeat, toggleRepeat, next, prev, seekBy, queue, queueIndex } = usePlayer();
+  const { track, isPlaying, current, total, pause, resume, seek, repeat, toggleRepeat, next, prev, seekBy, queue, queueIndex, setQueueAndPlay } =
+    usePlayer();
 
   const canPrev = queueIndex > 0;
   const canNext = queueIndex >= 0 && queueIndex < (queue?.length ?? 0) - 1;
@@ -169,7 +72,76 @@ export default function Home() {
         onNext: null,
         onForward: null,
       };
-  
+
+  const handlePlay = (t, idx) => {
+    if (!t?.previewUrl) return;
+    const isSame = track?.id != null && t?.id != null && String(track.id) === String(t.id);
+    if (isSame) {
+      if (isPlaying) pause();
+      else resume();
+      return;
+    }
+    setQueueAndPlay(tracks, idx);
+  };
+
+  useEffect(() => {
+    let alive = true;
+
+    fetchPlaylistCovers({ country: "BR" })
+      .then((list) => alive && setPlaylists(list))
+      .finally(() => alive && setLoadingP(false));
+
+    fetchTopGenres({ country: "br", limit: 100, take: 6 })
+      .then((list) => {
+        if (!alive) return;
+        if (Array.isArray(list) && list.length > 0) {
+          setGenres(list);
+        } else {
+          return fetchGenreSeeds({ country: "BR", take: 6 }).then((fallback) => {
+            if (alive) setGenres(fallback);
+          });
+        }
+      })
+      .catch(() =>
+        fetchGenreSeeds({ country: "BR", take: 6 }).then((fallback) => {
+          if (alive) setGenres(fallback);
+        })
+      )
+      .finally(() => alive && setLoadingG(false));
+
+    searchSongs("brasil", { limit: 18, country: "BR" })
+      .then((list) => alive && setTracks(list))
+      .finally(() => alive && setLoadingT(false));
+
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    let alive = true;
+    const list = genres ?? [];
+    if (list.length === 0) {
+      return () => {
+        alive = false;
+      };
+    }
+
+    (async () => {
+      const images = {};
+      await Promise.allSettled(
+        list.map(async (g) => {
+          const img = g?.sampleArtist ? await getArtistImage(g.sampleArtist) : null;
+          if (img) images[g.id] = img;
+        })
+      );
+      if (alive) setGenreImages(images);
+    })();
+
+    return () => {
+      alive = false;
+    };
+  }, [genres]);
 
   return (
     <HomeLayout right={<NowPlayingArea track={now} />}>
@@ -188,27 +160,51 @@ export default function Home() {
             ))}
         </HorizontalRail>
 
-        <TitleArea title="Artistas" railRef={railArtists} />
-        <HorizontalRail ref={railArtists}>
-          {loadingA && <div style={{ padding: 12 }}>Carregando artistas... 🎤</div>}
-          {!loadingA &&
-            artists.slice(0, 18).map((a) => (
-              <ArtistCard
-                key={a.id}
-                name={a.name}
-                image={artistImages[a.name] || "/music.png"} // ⚠️ iTunes não retorna foto do artista aqui
-                onClick={() => goMusic(a.name)}
-              />
-            ))}
-        </HorizontalRail>
-
-        <TitleArea title="Playlists" railRef={railPlaylists} />
+        <TitleArea title="Artistas" railRef={railPlaylists} />
         <HorizontalRail ref={railPlaylists}>
           {loadingP && <div style={{ padding: 12 }}>Carregando playlists... 🎶</div>}
           {!loadingP &&
             playlists.map((p) => (
               <PlaylistCard key={p.id} title={p.title} image={p.image} onClick={() => goMusic(p.term)} />
             ))}
+        </HorizontalRail>
+
+        <TitleArea title="Músicas" railRef={railTracks} />
+        <HorizontalRail ref={railTracks}>
+          {loadingT && <div style={{ padding: 12 }}>Carregando músicas... 🎵</div>}
+          {!loadingT && tracks.length === 0 && <div style={{ padding: 12 }}>Nenhuma música encontrada 😢</div>}
+          {!loadingT &&
+            tracks.map((t, idx) => {
+              const active = track?.id != null && t?.id != null && String(track.id) === String(t.id);
+
+              return (
+                <div key={t.id} className="home-trackCard card-glass">
+                  <img className="home-trackCard__img" src={t.artwork || "/music.png"} alt={t.title} />
+                  <div className="home-trackCard__meta">
+                    <p className="home-trackCard__title">{t.title}</p>
+                    <p className="home-trackCard__artist">{t.artist}</p>
+                    <p className="home-trackCard__extra">{t.album}</p>
+                  </div>
+                  <button
+                    type="button"
+                    className="home-trackCard__btn"
+                    onClick={() => handlePlay(t, idx)}
+                    disabled={!t.previewUrl}
+                    title={active ? (isPlaying ? "Pausar" : "Retomar") : "Reproduzir"}
+                  >
+                    {active ? (
+                      isPlaying ? (
+                        <img className="home-trackCard__icon is-control" src="/pouse-btn.svg" alt="Pausar" />
+                      ) : (
+                        <img className="home-trackCard__icon is-control" src="/play-btn.svg" alt="Retomar" />
+                      )
+                    ) : (
+                      <img className="home-trackCard__icon" src="/play-circle.svg" alt="Reproduzir" />
+                    )}
+                  </button>
+                </div>
+              );
+            })}
         </HorizontalRail>
       </main>
     </HomeLayout>
