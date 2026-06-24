@@ -1,7 +1,7 @@
 // src/pages/Music/MusicsPage.jsx
 import Music from "./Music";
 import HomeLayout from "../Home/HomeLayout";
-import NowPlayingArea from "../../components/NowPlayingArea/NowPlayingArea";
+import Player from "../../components/Player/Player";
 import { usePlayer } from "../../hooks";
 import { msToMinSec } from "../../services/itunes";
 
@@ -50,7 +50,7 @@ export default function MusicPage() {
       };
 
   return (
-    <HomeLayout right={<NowPlayingArea track={now} />}>
+    <HomeLayout right={<Player track={now} />}>
       <Music />
     </HomeLayout>
   );

@@ -4,7 +4,7 @@ import HorizontalRail from "../../components/HorizontalRail/HorizontalRail";
 import GenreCard from "../../components/cards/GenreCard";
 import PlaylistCard from "../../components/cards/PlaylistCard";
 import TitleArea from "../../components/TitleArea/TitleArea";
-import NowPlayingArea from "../../components/NowPlayingArea/NowPlayingArea";
+import Player from "../../components/Player/Player";
 import HomeLayout from "./HomeLayout";
 import "./Home.css";
 import { fetchGenreSeeds, fetchPlaylistCovers, fetchTopGenres } from "../../services/homeData";
@@ -12,6 +12,9 @@ import { msToMinSec } from "../../services/itunes";
 import { searchSongs } from "../../services/itunes";
 import { usePlayer } from "../../hooks";
 import { getArtistImage } from "../../services/lastfm";
+import play from "/play-circle.svg";
+import pausar from "/pouse-btn.svg";
+import playBtn from "/play-btn.svg"
 
 export default function Home() {
   const railGenres = useRef(null);
@@ -144,7 +147,7 @@ export default function Home() {
   }, [genres]);
 
   return (
-    <HomeLayout right={<NowPlayingArea track={now} />}>
+    <HomeLayout right={<Player track={now} />}>
       <main className="home__main">
         <TitleArea title="Você pode gostar" railRef={railGenres} />
         <HorizontalRail ref={railGenres}>
@@ -160,9 +163,9 @@ export default function Home() {
             ))}
         </HorizontalRail>
 
-        <TitleArea title="Artistas" railRef={railPlaylists} />
+        <TitleArea title="Álbuns musicais " railRef={railPlaylists} />
         <HorizontalRail ref={railPlaylists}>
-          {loadingP && <div style={{ padding: 12 }}>Carregando playlists... 🎶</div>}
+          {loadingP && <div style={{ padding: 12 }}>Carregando álbuns... 🎶</div>}
           {!loadingP &&
             playlists.map((p) => (
               <PlaylistCard key={p.id} title={p.title} image={p.image} onClick={() => goMusic(p.term)} />
@@ -194,12 +197,12 @@ export default function Home() {
                   >
                     {active ? (
                       isPlaying ? (
-                        <img className="home-trackCard__icon is-control" src="/pouse-btn.svg" alt="Pausar" />
+                        <img className="home-trackCard__icon is-control" src={pausar} alt="Pausar" />
                       ) : (
-                        <img className="home-trackCard__icon is-control" src="/play-btn.svg" alt="Retomar" />
+                        <img className="home-trackCard__icon is-control" src={playBtn} alt="Retomar" />
                       )
                     ) : (
-                      <img className="home-trackCard__icon" src="/play-circle.svg" alt="Reproduzir" />
+                      <img className="home-trackCard__icon" src={play} alt="Reproduzir" />
                     )}
                   </button>
                 </div>

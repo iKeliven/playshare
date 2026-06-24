@@ -1,7 +1,7 @@
 // src/pages/User/UserPage.jsx
 import User from "./User";
 import HomeLayout from "../Home/HomeLayout";
-import NowPlayingArea from "../../components/NowPlayingArea/NowPlayingArea";
+import Player from "../../components/Player/Player";
 import { usePlayer } from "../../hooks";
 import { msToMinSec } from "../../services/itunes";
 
@@ -50,7 +50,7 @@ export default function UserPage() {
       };
 
   return (
-    <HomeLayout right={<NowPlayingArea track={now} />}>
+    <HomeLayout right={<Player track={now} />}>
       <User />
     </HomeLayout>
   );

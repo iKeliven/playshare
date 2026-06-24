@@ -2,11 +2,22 @@
 
 .ps-sidebar {
     width: 90px;
-    
     padding: 20px;
     position: sticky;
+    top: 0;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.ps-sidebar__top {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
 .ps-sidebar__avatar {
     width: 48px;
@@ -14,6 +25,13 @@
     object-fit: cover;
 }
 
+.ps-sidebar__nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
 
 .ps-sidebar__link {
     width: 46px;
@@ -31,14 +49,14 @@
 }
 
 .ps-sidebar__link:hover {
-    background: rgba(217, 217, 217, .10);
-    scale: 1.2;
+    background: rgba(217, 217, 217, 0.1);
+    transform: scale(1.1);
 }
 
 .ps-sidebar__link.is-active {
-    background: rgba(0, 122, 255, .18);
+    background: rgba(0, 122, 255, 0.18);
     border-color: white;
-    box-shadow: 0 0 0 4px rgba(0, 122, 255, .10);
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
 }
 
 .ps-sidebar__icon {
@@ -46,8 +64,63 @@
     line-height: 1;
 }
 
+.ps-sidebar__icon img {
+    width: 20px;
+    height: 20px;
+}
+
 .ps-sidebar__bottom {
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+@media (max-width: 980px) {
+    .ps-sidebar {
+        height: auto;
+    }
+}
+
+@media (max-width: 700px) {
+    .ps-sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto;
+
+        width: 100%;
+        height: 100px;
+
+        padding: 0 20px;
+
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        z-index: 9999;
+        border-radius: 0;
+    }
+
+    .ps-sidebar__top {
+        display: none;
+    }
+
+    .ps-sidebar__nav {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .ps-sidebar__bottom {
+        width: auto;
+        margin-left: auto;
+    }
+
+    .ps-sidebar__link {
+        width: 42px;
+        height: 42px;
+    }
 }

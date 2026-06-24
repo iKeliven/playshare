@@ -1,6 +1,6 @@
-// src/components/NowPlayingArea/NowPlayingArea.jsx
+// src/components/Player/Player.jsx
 import { useCallback, useMemo } from "react";
-import "./NowPlayingArea.css";
+import "./Player.css";
 import playbtn from "/play-btn.svg";
 import pausebtn from "/pouse-btn.svg";
 import next from "/next-btn.svg";
@@ -8,7 +8,7 @@ import back from "/back-btn.svg";
 import nextview from "/next-vuesax-btn.svg";
 import backview from "/back-vuesax-btn.svg";
 
-export default function NowPlayingArea({ track }) {
+export default function Player({ track }) {
   const safe = useMemo(
     () =>
       track ?? {
@@ -24,7 +24,7 @@ export default function NowPlayingArea({ track }) {
 
   const handleToggle = useCallback(() => {
     if (safe.onToggle) safe.onToggle();
-  }, [safe]);
+  }, [safe.onToggle]);
 
   const handleSeek = useCallback(
     (e) => {
@@ -34,24 +34,24 @@ export default function NowPlayingArea({ track }) {
       const ratio = (e.clientX - rect.left) / rect.width;
       safe.onSeek(Math.max(0, Math.min(1, ratio)));
     },
-    [safe]
+    [safe.onSeek]
   );
 
   const handleRepeat = useCallback(() => {
     if (safe.onRepeat) safe.onRepeat();
-  }, [safe]);
+  }, [safe.onRepeat]);
 
   const handlePrev = useCallback(() => {
     if (safe.onPrev) safe.onPrev();
-  }, [safe]);
+  }, [safe.onPrev]);
 
   const handleNext = useCallback(() => {
     if (safe.onNext) safe.onNext();
-  }, [safe]);
+  }, [safe.onNext]);
 
   const handleForward = useCallback(() => {
     if (safe.onForward) safe.onForward();
-  }, [safe]);
+  }, [safe.onForward]);
 
   return (
     <aside className="now-playing card-glass round-bottom-xl gap-16 flex col center">
@@ -62,7 +62,7 @@ export default function NowPlayingArea({ track }) {
         {safe.cover ? (
           <img className="now-playing__cover b-neon-soft b-pill" src={safe.cover} alt={safe.title} />
         ) : (
-          <div className="now-playing__coverPlaceholder b-pill b-neon-soft">♪</div>
+          <div className="now-playing__coverPlaceholder b-pill b-neon-soft"></div>
         )}
       </div>
 

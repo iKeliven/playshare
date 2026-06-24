@@ -185,7 +185,7 @@ export function PlayerProvider({ children }) {
     const q = queueRef.current || [];
     const i = queueIndexRef.current;
     if (!Array.isArray(q) || q.length === 0) return;
-    if (!Number.isFinite(i) || i <= 0 || i >= q.length) return;
+    if (!Number.isFinite(i) || i < 1) return;
 
     const prevTrack = q[i - 1];
     if (!prevTrack?.previewUrl) return;

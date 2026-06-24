@@ -3,6 +3,9 @@ import { useMemo, useState, useCallback } from "react";
 import "./Favorites.css";
 import search from "/search.svg";
 import { useFavorites, usePlayer } from "../../hooks";
+import play from "/play-circle.svg";
+import pausar from "/pouse-btn.svg";
+import playBtn from "/play-btn.svg"
 
 export default function Favorites() {
   const [q, setQ] = useState("");
@@ -95,12 +98,12 @@ export default function Favorites() {
                 >
                   {currentTrack?.id != null && t?.id != null && String(currentTrack.id) === String(t.id) ? (
                     isPlaying ? (
-                      <img className="fav-playIcon is-control" src="/pouse-btn.svg" alt="Pausar" />
+                      <img className="fav-playIcon is-control" src={pausar} alt="Pausar" />
                     ) : (
-                      <img className="fav-playIcon is-control" src="/play-btn.svg" alt="Retomar" />
+                      <img className="fav-playIcon is-control" src={playBtn} alt="Retomar" />
                     )
                   ) : (
-                    <img className="fav-playIcon" src="/play-circle.svg" alt="Reproduzir" />
+                    <img className="fav-playIcon" src={play} alt="Reproduzir" />
                   )}
                 </button>
 
