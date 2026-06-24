@@ -22,36 +22,38 @@ export default function Player({ track }) {
     [track]
   );
 
+  const { onToggle, onSeek, onRepeat, onPrev, onNext, onForward } = safe;
+
   const handleToggle = useCallback(() => {
-    if (safe.onToggle) safe.onToggle();
-  }, [safe.onToggle]);
+    if (onToggle) onToggle();
+  }, [onToggle]);
 
   const handleSeek = useCallback(
     (e) => {
-      if (!safe.onSeek) return;
+      if (!onSeek) return;
       const bar = e.currentTarget;
       const rect = bar.getBoundingClientRect();
       const ratio = (e.clientX - rect.left) / rect.width;
-      safe.onSeek(Math.max(0, Math.min(1, ratio)));
+      onSeek(Math.max(0, Math.min(1, ratio)));
     },
-    [safe.onSeek]
+    [onSeek]
   );
 
   const handleRepeat = useCallback(() => {
-    if (safe.onRepeat) safe.onRepeat();
-  }, [safe.onRepeat]);
+    if (onRepeat) onRepeat();
+  }, [onRepeat]);
 
   const handlePrev = useCallback(() => {
-    if (safe.onPrev) safe.onPrev();
-  }, [safe.onPrev]);
+    if (onPrev) onPrev();
+  }, [onPrev]);
 
   const handleNext = useCallback(() => {
-    if (safe.onNext) safe.onNext();
-  }, [safe.onNext]);
+    if (onNext) onNext();
+  }, [onNext]);
 
   const handleForward = useCallback(() => {
-    if (safe.onForward) safe.onForward();
-  }, [safe.onForward]);
+    if (onForward) onForward();
+  }, [onForward]);
 
   return (
     <aside className="now-playing card-glass round-bottom-xl gap-16 flex col center">
