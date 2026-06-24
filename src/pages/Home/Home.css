@@ -22,13 +22,14 @@
 }
 
 .home-trackCard{
-  width: 288px;
-  height: 194px;
+  min-width: 200px;
+  max-width: 200px;
   padding: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   text-align: center;
 }
 
@@ -102,5 +103,11 @@
 
   .home__aside {
     order: -1;
+  }
+}
+
+@media (max-width: 700px) {
+  .home__main {
+    padding-bottom: 120px;
   }
 }

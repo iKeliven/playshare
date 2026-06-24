@@ -5,6 +5,9 @@ import "./Music.css";
 import search from "/search.svg";
 import { searchSongs } from "../../services/itunes";
 import { useFavorites, usePlayer } from "../../hooks";
+import play from "/play-circle.svg";
+import pausar from "/pouse-btn.svg";
+import playBtn from "/play-btn.svg"
 
 const DEBOUNCE_MS = 400;
 
@@ -189,12 +192,12 @@ export default function Music() {
                 >
                   {active ? (
                     isPlaying ? (
-                      <img className="music-playIcon is-control" src="/pouse-btn.svg" alt="Pausar" />
+                      <img className="music-playIcon is-control" src={pausar} alt="Pausar" />
                     ) : (
-                      <img className="music-playIcon is-control" src="/play-btn.svg" alt="Retomar" />
+                      <img className="music-playIcon is-control" src={playBtn} alt="Retomar" />
                     )
                   ) : (
-                    <img className="music-playIcon" src="/play-circle.svg" alt="Reproduzir" />
+                    <img className="music-playIcon" src={play} alt="Reproduzir" />
                   )}
                 </button>
 

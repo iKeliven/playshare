@@ -1,7 +1,7 @@
-// src/components/Sidebar/Sidebar.jsx
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks";
 import "./Sidebar.css";
+
 import home from "/home.svg";
 import userIcon from "/user.svg";
 import heart from "/heart.svg";
@@ -25,8 +25,8 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="ps-sidebar card-glass flex col jc-between ai-center">
-      <div className="ps-sidebar__top flex center full">
+    <aside className="ps-sidebar card-glass">
+      <div className="ps-sidebar__top">
         <div
           className="ps-sidebar__avatar b-pill b-neon-soft"
           aria-label="Avatar"
@@ -45,17 +45,21 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <nav className="ps-sidebar__nav flex col ai-center gap-24 full" aria-label="Menu lateral">
-        {links.map((l) => (
+      <nav className="ps-sidebar__nav" aria-label="Menu lateral">
+        {links.map((link) => (
           <NavLink
-            key={l.to}
-            to={l.to}
+            key={link.to}
+            to={link.to}
             className={({ isActive }) =>
-              `ps-sidebar__link b-pill flex center ${isActive ? "is-active" : ""}`
+              `ps-sidebar__link ${isActive ? "is-active" : ""}`
             }
-            title={l.label}
+            title={link.label}
           >
-            <img src={l.icon} alt={l.label} className="ps-sidebar__icon" />
+            <img
+              src={link.icon}
+              alt={link.label}
+              className="ps-sidebar__icon"
+            />
           </NavLink>
         ))}
       </nav>
@@ -67,9 +71,11 @@ export default function Sidebar() {
           title="Sair"
           onClick={handleLogoutClick}
         >
-          <span className="ps-sidebar__icon" aria-hidden="true">
-            <img src={logout} alt="Sair" />
-          </span>
+          <img
+            src={logout}
+            alt="Sair"
+            className="ps-sidebar__icon"
+          />
         </button>
       </div>
     </aside>

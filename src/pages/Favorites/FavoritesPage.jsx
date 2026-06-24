@@ -1,7 +1,7 @@
 // src/pages/Favorites/FavoritesPage.jsx
 import Favorites from "./Favorites";
 import HomeLayout from "../Home/HomeLayout";
-import NowPlayingArea from "../../components/NowPlayingArea/NowPlayingArea";
+import Player from "../../components/Player/Player";
 import { usePlayer } from "../../hooks";
 import { msToMinSec } from "../../services/itunes";
 
@@ -50,7 +50,7 @@ export default function FavoritesPage() {
       };
 
   return (
-    <HomeLayout right={<NowPlayingArea track={now} />}>
+    <HomeLayout right={<Player track={now} />}>
       <Favorites />
     </HomeLayout>
   );
