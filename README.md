@@ -1,16 +1,203 @@
-# React + Vite
+# PlayShare
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Plataforma Web de Compartilhamento e Streaming de Músicas desenvolvida como projeto acadêmico do Curso Técnico em Informática para Internet.
 
-Currently, two official plugins are available:
+O projeto simula o desenvolvimento de uma aplicação semelhante ao Spotify, permitindo que usuários descubram músicas, reproduzam conteúdos, criem playlists e recebam recomendações personalizadas.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Sobre o Projeto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+A PlayShare foi criada para aplicar conceitos de:
 
-## Expanding the ESLint configuration
+- UX e UI
+- Levantamento de Requisitos
+- Modelagem de Sistemas
+- React
+- Integração com APIs
+- Versionamento com Git e GitHub
+- Testes Automatizados
+- Desenvolvimento Front-End
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+O projeto faz parte de uma Situação de Aprendizagem Integrada, simulando um ambiente real de desenvolvimento de software.
+
+---
+
+## Funcionalidades
+
+### Cadastro e Login
+
+- Cadastro de novos usuários
+- Autenticação de acesso
+- Gerenciamento de sessão
+
+### Busca Musical
+
+- Busca de músicas
+- Busca de artistas
+- Busca de álbuns
+
+### Reprodução de Músicas
+
+- Player de áudio
+- Play/Pause
+- Avançar faixa
+- Retroceder faixa
+- Barra de progresso
+
+### Playlists
+
+- Criar playlists
+- Editar playlists
+- Excluir playlists
+- Adicionar músicas
+
+### Recomendações
+
+- Sugestões personalizadas
+- Histórico de reprodução
+- Descoberta de novos conteúdos
+
+### Compartilhamento
+
+- Compartilhamento de músicas
+- Compartilhamento de playlists
+- Geração de links públicos
+
+---
+
+## Tecnologias Utilizadas
+
+### Front-End
+
+- React
+- JavaScript
+- HTML5
+- CSS3
+- React Router
+
+### APIs
+
+- iTunes Search API
+- Apple Music RSS API
+
+### Ferramentas
+
+- Git
+- GitHub
+- Figma
+- VS Code
+- Postman
+
+### Testes
+
+- Jest
+- Cypress
+
+---
+
+## APIs Utilizadas
+
+### iTunes Search API
+
+```txt
+https://itunes.apple.com/search
+```
+
+Responsável por:
+
+- Buscar músicas
+- Buscar artistas
+- Buscar álbuns
+- Recuperar informações musicais
+
+### Apple Music RSS API
+
+```txt
+https://rss.applemarketingtools.com/api/v2
+```
+
+Responsável por:
+
+- Top músicas
+- Álbuns em destaque
+- Conteúdo musical atualizado
+
+---
+
+## Estrutura do Projeto
+
+```bash
+src/
+├── assets/
+├── components/
+│   ├── Button/
+│   ├── Card/
+│   ├── Header/
+│   ├── Sidebar/
+│   └── Player/
+├── pages/
+│   ├── Home/
+│   ├── Login/
+│   ├── Musicas/
+│   ├── Favoritos/
+│   └── Usuario/
+├── services/
+│   ├── itunesService.js
+│   └── rssService.js
+├── routes/
+├── hooks/
+├── contexts/
+└── App.jsx
+```
+
+---
+
+## Objetivos de Aprendizagem
+
+Durante o desenvolvimento deste projeto foram trabalhadas as seguintes competências:
+
+- Levantamento de requisitos
+- Prototipação de interfaces
+- Desenvolvimento Front-End
+- Consumo de APIs
+- Responsividade
+- Controle de estados
+- Versionamento de software
+- Testes automatizados
+- Trabalho em equipe
+
+---
+
+## Protótipo
+
+https://www.figma.com/proto/WSClrXzL7zq7nDdZ7ejlch/PlaayShare---spotifake
+
+---
+
+## Repositório
+
+https://github.com/iKeliven/playshare
+
+---
+
+## Projeto Acadêmico
+
+Projeto desenvolvido para fins educacionais no Curso Técnico em Informática para Internet.
+
+Unidades Curriculares envolvidas:
+
+- Projeto de Front-End
+- Codificação para Front-End
+- Interação com APIs
+- Testes de Front-End
+
+Instituição: SENAI/SC
+
+---
+
+## Autor
+
+Keliven Demarchi
+
+Docente de Desenvolvimento de Sistemas e Front-End
