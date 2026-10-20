@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HorizontalRail from "../../components/HorizontalRail/HorizontalRail";
-import GenreCard from "../../components/cards/GenreCard";
-import PlaylistCard from "../../components/cards/PlaylistCard";
+import GenreCard from "../../components/Cards/GenreCard";
+import PlaylistCard from "../../components/Cards/PlaylistCard";
 import TitleArea from "../../components/TitleArea/TitleArea";
 import Player from "../../components/Player/Player";
 import HomeLayout from "./HomeLayout";
