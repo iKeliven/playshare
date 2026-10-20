@@ -66,6 +66,19 @@ O projeto faz parte de uma Situação de Aprendizagem Integrada, simulando um am
 
 ---
 
+## Publicação no Netlify
+
+O arquivo `netlify.toml` configura o build com Node.js 22, comando `npm run build` e diretório de publicação `dist`.
+
+- **Importação do Git:** selecione este repositório no Netlify e mantenha o diretório base na raiz do projeto. As configurações de build são lidas automaticamente.
+- **Upload manual:** execute `npm ci` e `npm run build`, depois envie a pasta `dist` ao Netlify.
+
+O arquivo `public/_redirects` é copiado para o build e permite acessar ou atualizar as rotas do React diretamente, sem erro 404, inclusive no upload manual.
+
+O build padrão usa a raiz `/`. O workflow do GitHub Pages define `GITHUB_PAGES=true` para manter o caminho `/playshare/` nessa plataforma.
+
+---
+
 ## Tecnologias Utilizadas
 
 ### Front-End
